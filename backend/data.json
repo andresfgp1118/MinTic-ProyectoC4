@@ -1,0 +1,54 @@
+ {
+    "products": [
+        {
+            "name" : "Recibo Enel",
+            "slug" : "recibo-enel",
+            "category": "Servicios Publicos",
+            "image" : "/images/p1.jpg",
+            "price" : 89560,
+            "countInStock" : 1,
+            "brand" : "Enel",
+            "rating" : 4.7,
+            "numReviews" : 234,
+            "description" : "Recibo de la luz casa Santa Cecilia"
+        },
+        {
+            "name" : "Recibo Acueducto",
+            "slug" : "recibo-acueducto",
+            "category": "Servicios Publicos",
+            "image" : "/images/p2.jpg",
+            "price" : 203000,
+            "countInStock" : 1,
+            "brand" : "Acueducto-Bogota",
+            "rating" : 4.5,
+            "numReviews" : 215,
+            "description" : "Recibo del agua apartamento Santa Cecilia"
+        },
+        {
+            "name" : "Recibo Vanti",
+            "slug" : "recibo-vanti",
+            "category": "Servicios Publicos",
+            "image" : "/images/p3.jpg",
+            "price" : 36200,
+            "countInStock" : 1,
+            "brand" : "Vanti",
+            "rating" : 4.2,
+            "numReviews" : 199,
+            "description" : "Recibo del gas casa Santa Cecilia"
+        },
+        {
+            "name" : "Recibo Movistar",
+            "slug" : "recibo-movistar",
+            "category": "Servicios Publicos",
+            "image" : "/images/p4.jpg",
+            "price" : 104500,
+            "countInStock" : 1,
+            "brand" : "Movistar",
+            "rating" : 4.6,
+            "numReviews" : 54,
+            "description" : "Recibo de internet Movistar"
+        }
+    ]
+}
+
+
