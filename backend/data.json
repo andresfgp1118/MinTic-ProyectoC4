@@ -6,7 +6,7 @@
             "category": "Servicios Publicos",
             "image" : "/images/p1.jpg",
             "price" : 89560,
-            "countInStock" : 1,
+            "countInStock" : 0,
             "brand" : "Enel",
             "rating" : 4.7,
             "numReviews" : 234,
