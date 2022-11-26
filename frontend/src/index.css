@@ -40,3 +40,7 @@ main {
   background-color: black;
   border-radius: 8%;
 }
+
+.img-thumbnail {
+  height: 80px;
+}

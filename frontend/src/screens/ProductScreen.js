@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useReducer } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,11 +8,11 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { Helmet }  from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
 import { getError } from "../utils";
-
+import { Store } from "../Store";
 
 const baseURL = "http://localhost:5000";
 
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -50,6 +51,25 @@ function ProductScreen() {
     };
     fecthData();
   }, [slug]);
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {car} = state
+  const addToCarHandler = async() => {
+    const existItem = car.carItems.find((x) => x._id === product._id);
+    const quantify = existItem ? existItem.quantify + 1 : 1;
+    const { data } = await axios.get(`${baseURL}/api/products/${product._id}`); 
+    if (data.countInStock < quantify) {
+      window.alert('No hay pagos disponibles')
+      return;
+    }
+    ctxDispatch({
+      type: "CAR_ADD_ITEM",
+      payload: { ...product, quantify }, // revisar por que no deja agregar varios prodcutos
+    });
+    navigate('/car')
+  };
+
+
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -110,7 +130,13 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button className="btn-add-car" variant="primary">Agregar al carrito</Button>
+                      <Button
+                        onClick={addToCarHandler}
+                        className="btn-add-car"
+                        variant="primary"
+                      >
+                        Agregar al carrito
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 )}
